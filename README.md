@@ -79,6 +79,21 @@ For example: `Force`, `TimeScale`, `Network`, `Item / Fluid / Building / etc.`
 ### `Mod` - dashboards dedicated to display mod related information
   - 4.0.1 - Mod: YARM.json
 
+## Known limitations
+
+1. dashboards are only accurate on constand `UPS`, fluctuating `UPS` will result in inaccurate graphs.  
+
+2. there is a lot of information within the game that dashboards cant represent, information we don't get.  
+     - for example some missing, despite being useful, metrics include `maximum possible power production / accumulator charge / logistic network requests` and maybe many more.  
+
+(these are limitations of the graftorio2 mod itself)
+
+## Known issues
+
+1. `Info / Research ETA` is under some circumstances highly inaccurate.
+     - it's calculation is limited to a `Start` within last two weeks. if the research 'start' is further in the past then the last known date is the `Start` and base of all calculation.
+     - same applies to restarting a research: it breaks the calculation entirely. imagen you only needed < 1 second to get to 40% and try to calculate how long it takes to get to 100%.
+
 ## Contributing
 
 ### Grafana dashboards
