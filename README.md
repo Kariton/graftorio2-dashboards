@@ -75,10 +75,10 @@ not all filters are available on all dashboards.
 ### `Misc` - detailed presentation in various forms
   - 3.0.1 - Misc: Items
   - 3.0.2 - Misc: Buildings
-  - 3.0.4 - Misc: Logistic Networks
-  - 3.0.4.1 - Misc: Logistic Items
-  - 3.0.4.2 - Misc: Robots
-  - 3.0.5 - Misc: Trains
+  - 3.0.3 - Misc: Logistic Networks
+  - 3.0.3.1 - Misc: Logistic Items
+  - 3.0.3.2 - Misc: Robots
+  - 3.0.4 - Misc: Trains
 
 ### `Mod` - dashboards dedicated to display mod related information
   - 4.0.1 - Mod: YARM
@@ -104,9 +104,6 @@ not all filters are available on all dashboards.
      - same applies to restarting a research: it breaks the calculation entirely. imagine you only needed < 1 second to get to 40% and try to calculate how long it takes to get to 100%.
 2. `Default: X` 'per entity' values in the small stats display are not the same as ingame.
      - for some the needed information is not available, for others the calculation is not feasable / recommendable. instead this field shows the 'total' of that metric per entity over the selected timerange.
-3. `Misc: Buildings` 'Total' is inaccurate.
-     - there is no information about total existing buildings in the export. the total is estimated by counting `factorio_entity_build_count_input`, `factorio_entity_build_count_outpu` and `factorio_kill_count_output`
-     - data retention or incomplete metrics will infect this graph.
 
 ## Contributing
 
