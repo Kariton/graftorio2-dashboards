@@ -304,8 +304,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -436,8 +435,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -728,7 +726,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_entity_build_count_input|factorio_entity_build_count_output\"},name)",
+        "definition": "query_result(factorio_entity_build_count_input{force=~\"${Force}\"} OR factorio_entity_build_count_output{force=~\"${Force}\"})",
         "description": "Building",
         "hide": 0,
         "includeAll": true,
@@ -737,11 +735,11 @@
         "name": "Building",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_entity_build_count_input|factorio_entity_build_count_output\"},name)",
+          "query": "query_result(factorio_entity_build_count_input{force=~\"${Force}\"} OR factorio_entity_build_count_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "/^(?!tree-.*|.*rock-.*|.*-robot)/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

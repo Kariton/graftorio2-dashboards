@@ -943,7 +943,20 @@
           },
           "unit": "percentunit"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name} ${__field.labels.level}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -982,7 +995,7 @@
           "exemplar": false,
           "expr": "factorio_research_queue{force=~\"${Force}\",index=\"1\",name=\"${helper_research_name}\",level=\"${helper_research_level}\"}",
           "interval": "",
-          "legendFormat": "{{name}} {{level}}",
+          "legendFormat": "{{name}}",
           "range": true,
           "refId": "A",
           "target": "randomWalk('myName')"
@@ -2754,9 +2767,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "player"
+          ],
+          "value": [
+            "player"
+          ]
         },
         "datasource": {
           "type": "prometheus"
@@ -2781,10 +2798,9 @@
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "mining-productivity-4",
+          "value": "mining-productivity-4"
         },
         "datasource": {
           "type": "prometheus"
@@ -2802,17 +2818,16 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/,name=\"(.*)\"}/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "180",
+          "value": "180"
         },
         "datasource": {
           "type": "prometheus"

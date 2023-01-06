@@ -130,7 +130,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
@@ -261,7 +274,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
@@ -362,7 +388,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -528,7 +567,7 @@
           "format": "time_series",
           "hide": false,
           "instant": true,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{localised_name}}",
           "range": false,
           "refId": "A"
         }
@@ -580,7 +619,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -746,7 +798,7 @@
           "format": "time_series",
           "hide": false,
           "instant": true,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{localised_name}}",
           "range": false,
           "refId": "A"
         }
@@ -755,7 +807,7 @@
       "type": "bargauge"
     }
   ],
-  "refresh": "30s",
+  "refresh": false,
   "schemaVersion": 37,
   "style": "dark",
   "tags": [
@@ -766,7 +818,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "Minute",
           "value": "60"
         },
@@ -842,7 +894,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_item_production_input|factorio_item_production_output\"},name)",
+        "definition": "query_result(factorio_item_production_input{force=~\"${Force}\"} OR factorio_item_production_output{force=~\"${Force}\"})",
         "description": "Item",
         "hide": 0,
         "includeAll": true,
@@ -851,11 +903,11 @@
         "name": "Item",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_item_production_input|factorio_item_production_output\"},name)",
+          "query": "query_result(factorio_item_production_input{force=~\"${Force}\"} OR factorio_item_production_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -882,7 +934,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -909,7 +961,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

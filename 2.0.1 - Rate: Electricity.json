@@ -235,7 +235,20 @@
           "mappings": [],
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 13,
@@ -287,7 +300,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
           "interval": "",
           "legendFormat": "{{name}}",
           "range": true,
@@ -331,7 +344,20 @@
           "mappings": [],
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 13,
@@ -383,7 +409,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
           "interval": "",
           "legendFormat": "{{name}}",
           "range": true,
@@ -469,7 +495,20 @@
               },
               "unit": "watt"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 12,
@@ -515,7 +554,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "sum by (name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Producer}\"}[$__rate_interval]))",
+              "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Producer}\"}[$__rate_interval]))",
               "interval": "",
               "legendFormat": "{{name}}",
               "range": true,
@@ -591,7 +630,20 @@
               },
               "unit": "watt"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 12,
@@ -637,7 +689,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "sum by (name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}\"}[$__rate_interval]))",
+              "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}\"}[$__rate_interval]))",
               "interval": "",
               "legendFormat": "{{name}}",
               "range": true,
@@ -696,6 +748,37 @@
         "current": {
           "selected": true,
           "text": [
+            "nauvis"
+          ],
+          "value": [
+            "nauvis"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus"
+        },
+        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},surface)",
+        "description": "Surface",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Surface",
+        "multi": true,
+        "name": "Surface",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},surface)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
             "All"
           ],
           "value": [
@@ -705,7 +788,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},network)",
+        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\",force=~\"${Force}\",surface=~\"${Surface}\"},network)",
         "description": "Network",
         "hide": 0,
         "includeAll": true,
@@ -714,13 +797,13 @@
         "name": "Network",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},network)",
+          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\",force=~\"${Force}\",surface=~\"${Surface}\"},network)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 3,
         "type": "query"
       },
       {
@@ -736,7 +819,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_power_production_input{force=~\"$Force\",network=~\"^$Network\"}, name)",
+        "definition": "query_result(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
         "description": "Consumer",
         "hide": 0,
         "includeAll": true,
@@ -745,11 +828,11 @@
         "name": "Consumer",
         "options": [],
         "query": {
-          "query": "label_values(factorio_power_production_input{force=~\"$Force\",network=~\"^$Network\"}, name)",
+          "query": "query_result(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -767,7 +850,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_power_production_output{force=~\"${Force}\",network=~\"^${Network}\"},name)",
+        "definition": "query_result(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
         "description": "Producer",
         "hide": 0,
         "includeAll": true,
@@ -776,11 +859,11 @@
         "name": "Producer",
         "options": [],
         "query": {
-          "query": "label_values(factorio_power_production_output{force=~\"${Force}\",network=~\"^${Network}\"},name)",
+          "query": "query_result(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

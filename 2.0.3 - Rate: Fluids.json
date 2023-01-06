@@ -264,6 +264,18 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
           }
         ]
       },
@@ -401,7 +413,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -525,6 +538,18 @@
                       "fixedColor": "text",
                       "mode": "fixed"
                     }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
                   }
                 ]
               }
@@ -640,7 +665,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -764,6 +790,18 @@
                       "fixedColor": "text",
                       "mode": "fixed"
                     }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
                   }
                 ]
               }
@@ -913,7 +951,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_fluid_production_input|factorio_fluid_production_output\"},name)",
+        "definition": "query_result(factorio_fluid_production_input{force=~\"${Force}\"} OR factorio_fluid_production_output{force=~\"${Force}\"})",
         "description": "Fluid",
         "hide": 0,
         "includeAll": true,
@@ -922,11 +960,11 @@
         "name": "Fluid",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_fluid_production_input|factorio_fluid_production_output\"},name)",
+          "query": "query_result(factorio_fluid_production_input{force=~\"${Force}\"} OR factorio_fluid_production_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

@@ -489,8 +489,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -609,8 +608,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               }
@@ -764,7 +762,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_pollution_production_input{force=~\"${Force}\"},name)",
+        "definition": "query_result(factorio_pollution_production_input{force=~\"${Force}\"})",
         "description": "Producer",
         "hide": 0,
         "includeAll": true,
@@ -773,11 +771,11 @@
         "name": "Producer",
         "options": [],
         "query": {
-          "query": "label_values(factorio_pollution_production_input{force=~\"${Force}\"},name)",
+          "query": "query_result(factorio_pollution_production_input{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -795,7 +793,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_pollution_production_output{force=~\"${Force}\"},name)",
+        "definition": "query_result(factorio_pollution_production_output{force=~\"${Force}\"})",
         "description": "Consumer",
         "hide": 0,
         "includeAll": true,
@@ -804,11 +802,11 @@
         "name": "Consumer",
         "options": [],
         "query": {
-          "query": "label_values(factorio_pollution_production_output{force=~\"${Force}\"},name)",
+          "query": "query_result(factorio_pollution_production_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

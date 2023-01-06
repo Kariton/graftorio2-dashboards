@@ -1,18 +1,18 @@
 
 ![](https://mods-data.factorio.com/assets/ad36f974db944b1540ce50a0aea46221f26f7c36.thumb.png)
 
-# Dashboards for [graftorio2](https://mods.factorio.com/mod/graftorio2)
+# Dashboards for [graftorio-ng](https://mods.factorio.com/mod/graftorio-ng)
 
 visualize metrics from your Factorio game in Grafana
 
 ## What is this?
 
 [Grafana](https://grafana.com/) is an open-source project for rendering time-series metrics.  
-by using [graftorio2](https://mods.factorio.com/mod/graftorio2), you can create a dashboard with various charts monitoring aspects of your Factorio factory.  
+by using [graftorio-ng](https://mods.factorio.com/mod/graftorio-ng), you can create a dashboard with various charts monitoring aspects of your Factorio factory.  
 this dashboard is viewed using a web browser outside of the game client. (works great in a 2nd monitor!)
 
-in order to use graftorio2, you need to run the Grafana software and a database called [Prometheus](https://prometheus.io/) locally.  
-graftorio2 automates this process using docker, or you can set these up by hand.
+in order to use graftorio-ng, you need to run the Grafana software and a database called [Prometheus](https://prometheus.io/) locally.  
+graftorio-ng automates this process using docker, or you can set these up by hand.
 
 and here are the ready to use dashboards for it!
 
@@ -95,7 +95,7 @@ not all filters are available on all dashboards.
      - logistic network requests
      - and many more
 
-(these are limitations of the graftorio2 mod itself)
+(these are limitations of the graftorio-ng mod itself)
 
 ## Known issues
 

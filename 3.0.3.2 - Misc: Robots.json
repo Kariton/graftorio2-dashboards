@@ -101,7 +101,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.network_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
@@ -146,8 +159,8 @@
             "type": "prometheus"
           },
           "editorMode": "code",
-          "expr": "  sum(\r\n    factorio_logistic_network_all_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n  )\r\nor on ()\r\n  vector(0)",
-          "legendFormat": "__auto",
+          "expr": "sum by (network,network_name) (\r\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_construction_robots\"}\r\n)",
+          "legendFormat": "{{network}}",
           "range": true,
           "refId": "A"
         }
@@ -161,7 +174,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 7
       },
       "panels": [],
       "title": "Network Logistic Robots",
@@ -200,13 +213,26 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.network_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
         "w": 2,
         "x": 0,
-        "y": 14
+        "y": 8
       },
       "links": [
         {
@@ -245,7 +271,7 @@
             "type": "prometheus"
           },
           "editorMode": "code",
-          "expr": "  sum(\r\n    factorio_logistic_network_all_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n  )\r\nor on ()\r\n  vector(0)",
+          "expr": "sum by (network,network_name) (\r\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_logistic_robots\"}\r\n)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -260,7 +286,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 14
       },
       "panels": [
         {
@@ -319,7 +345,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -329,9 +356,9 @@
           },
           "gridPos": {
             "h": 6,
-            "w": 4,
+            "w": 12,
             "x": 0,
-            "y": 27
+            "y": 15
           },
           "links": [
             {
@@ -368,7 +395,254 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "  sum(\n    factorio_logistic_network_all_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\n  )\nor on ()\n  vector(0)",
+              "expr": "sum(\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"charging_bots\"}\n)",
+              "interval": "",
+              "legendFormat": "Charging",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Charging Robots",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [
+                {
+                  "targetBlank": false,
+                  "title": "Misc: Logistic Networks",
+                  "url": "/d/oRqZymynz?orgId=1&${Network:queryparam}"
+                },
+                {
+                  "targetBlank": false,
+                  "title": "Misc: Robots",
+                  "url": "/d/diiDwaq7k?orgId=1&${__all_variables}"
+                }
+              ],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "text",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 15
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Misc: Logistic Networks",
+              "url": "/d/oRqZymynz?orgId=1&${Network:queryparam}"
+            },
+            {
+              "targetBlank": false,
+              "title": "Misc: Robots",
+              "url": "/d/diiDwaq7k?orgId=1&${__all_variables}"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.0.1",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"waiting_for_charge\"}\n)",
+              "interval": "",
+              "legendFormat": "Waiting to charge",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Waiting To Charge Robots",
+          "type": "timeseries"
+        }
+      ],
+      "repeat": "Network",
+      "repeatDirection": "h",
+      "title": "Network ${Network}",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [
+                {
+                  "targetBlank": false,
+                  "title": "Misc: Logistic Networks",
+                  "url": "/d/oRqZymynz?orgId=1&${Network:queryparam}"
+                },
+                {
+                  "targetBlank": false,
+                  "title": "Misc: Robots",
+                  "url": "/d/diiDwaq7k?orgId=1&${__all_variables}"
+                }
+              ],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "text",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 4,
+            "x": 0,
+            "y": 29
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Misc: Logistic Networks",
+              "url": "/d/oRqZymynz?orgId=1&${Network:queryparam}"
+            },
+            {
+              "targetBlank": false,
+              "title": "Misc: Robots",
+              "url": "/d/diiDwaq7k?orgId=1&${__all_variables}"
+            }
+          ],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.0.1",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_construction_robots\"}\n)",
               "interval": "",
               "legendFormat": "Overall",
               "range": true,
@@ -408,7 +682,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -428,7 +703,7 @@
             "h": 6,
             "w": 4,
             "x": 4,
-            "y": 27
+            "y": 29
           },
           "links": [
             {
@@ -461,15 +736,49 @@
                 "type": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum(\n    factorio_logistic_network_available_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\n  /\n    factorio_logistic_network_all_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\n)",
+              "exemplar": false,
+              "expr": "factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"available_construction_robots\"}",
+              "format": "time_series",
               "hide": false,
-              "legendFormat": "__auto",
-              "range": true,
+              "instant": true,
+              "legendFormat": "available_construction_robots",
+              "range": false,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_construction_robots\"}",
+              "hide": false,
+              "instant": true,
+              "legendFormat": "all_construction_robots",
+              "range": false,
+              "refId": "B"
             }
           ],
           "title": "Available Construction Robots",
-          "transformations": [],
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "alias": "Network ${Network}",
+                "binary": {
+                  "left": "available_construction_robots",
+                  "operator": "/",
+                  "reducer": "sum",
+                  "right": "all_construction_robots"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                },
+                "replaceFields": true
+              }
+            }
+          ],
           "type": "gauge"
         },
         {
@@ -528,7 +837,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -540,7 +850,7 @@
             "h": 6,
             "w": 8,
             "x": 8,
-            "y": 27
+            "y": 29
           },
           "links": [
             {
@@ -577,7 +887,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "  sum(\r\n      factorio_logistic_network_all_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n    -\r\n      factorio_logistic_network_available_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n  )\r\nor on ()\r\n  vector(0)",
+              "expr": "  sum(\r\n      factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_construction_robots\"}\r\n    -\r\n      factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"available_construction_robots\"}\r\n  )\r\nor on ()\r\n  vector(0)",
               "interval": "",
               "legendFormat": "Working",
               "range": true,
@@ -643,7 +953,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -655,7 +966,7 @@
             "h": 6,
             "w": 8,
             "x": 16,
-            "y": 27
+            "y": 29
           },
           "links": [
             {
@@ -692,7 +1003,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "  sum(\n    factorio_logistic_network_available_construction_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\n  )\nor on ()\n  vector(0)",
+              "expr": "sum(\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"available_construction_robots\"}\n)",
               "interval": "",
               "legendFormat": "Available",
               "range": true,
@@ -717,7 +1028,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 42
       },
       "panels": [
         {
@@ -776,7 +1087,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -788,7 +1100,7 @@
             "h": 6,
             "w": 4,
             "x": 0,
-            "y": 10
+            "y": 49
           },
           "links": [
             {
@@ -825,7 +1137,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "  sum(\n    factorio_logistic_network_all_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\n  )\nor on ()\n  vector(0)",
+              "expr": "sum(\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_logistic_robots\"}\n)",
               "interval": "",
               "legendFormat": "Overall",
               "range": true,
@@ -865,7 +1177,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "#EAB839",
@@ -885,7 +1198,7 @@
             "h": 6,
             "w": 4,
             "x": 4,
-            "y": 10
+            "y": 49
           },
           "links": [
             {
@@ -919,16 +1232,47 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "sum(\r\n    factorio_logistic_network_available_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n  /\r\n    factorio_logistic_network_all_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n)",
+              "expr": "factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"available_logistic_robots\"}",
               "hide": false,
               "instant": true,
-              "legendFormat": "__auto",
+              "legendFormat": "available_logistic_robots",
               "range": false,
               "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_logistic_robots\"}",
+              "hide": false,
+              "instant": true,
+              "legendFormat": "all_logistic_robots",
+              "range": false,
+              "refId": "B"
             }
           ],
           "title": "Available Logistic Robots",
-          "transformations": [],
+          "transformations": [
+            {
+              "id": "calculateField",
+              "options": {
+                "alias": "Network ${Network}",
+                "binary": {
+                  "left": "available_logistic_robots",
+                  "operator": "/",
+                  "reducer": "sum",
+                  "right": "all_logistic_robots"
+                },
+                "mode": "binary",
+                "reduce": {
+                  "reducer": "sum"
+                },
+                "replaceFields": true
+              }
+            }
+          ],
           "type": "gauge"
         },
         {
@@ -987,7 +1331,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -999,7 +1344,7 @@
             "h": 6,
             "w": 8,
             "x": 8,
-            "y": 10
+            "y": 49
           },
           "links": [
             {
@@ -1036,7 +1381,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "  sum(\r\n      factorio_logistic_network_all_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n    -\r\n      factorio_logistic_network_available_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\r\n  )\r\nor on ()\r\n  vector(0)",
+              "expr": "  sum(\r\n        factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"all_logistic_robots\"}\r\n    -\r\n      factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"available_logistic_robots\"}\r\n\r\n  )\r\nor on ()\r\n  vector(0)",
               "interval": "",
               "legendFormat": "Working",
               "range": true,
@@ -1102,7 +1447,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -1114,7 +1460,7 @@
             "h": 6,
             "w": 8,
             "x": 16,
-            "y": 10
+            "y": 49
           },
           "links": [
             {
@@ -1151,7 +1497,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "  sum(\n    factorio_logistic_network_available_logistic_robots{force=~\"${Force}\",location=~\"${Surface}\",network=\"${Network}\"}\n  )\nor on ()\n  vector(0)",
+              "expr": "sum(\n  factorio_logistic_network_bots{force=~\"${Force}\",network=\"${Network}\",surface=~\"${Surface}\",type=\"available_logistic_robots\"}\n)",
               "interval": "",
               "legendFormat": "Available",
               "range": true,
@@ -1179,7 +1525,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "player"
           ],
@@ -1190,7 +1536,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_logistic_network_robot_limit,force)",
+        "definition": "label_values({__name__=~\"factorio_logistic_network_bots\"},force)",
         "description": "Force",
         "hide": 0,
         "includeAll": true,
@@ -1199,7 +1545,7 @@
         "name": "Force",
         "options": [],
         "query": {
-          "query": "label_values(factorio_logistic_network_robot_limit,force)",
+          "query": "label_values({__name__=~\"factorio_logistic_network_bots\"},force)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1221,7 +1567,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_logistic_network_robot_limit{force=~\"${Force}\"},location)",
+        "definition": "label_values({__name__=~\"factorio_logistic_network_bots\"},surface)",
         "description": "Surface",
         "hide": 0,
         "includeAll": true,
@@ -1230,7 +1576,7 @@
         "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values(factorio_logistic_network_robot_limit{force=~\"${Force}\"},location)",
+          "query": "label_values({__name__=~\"factorio_logistic_network_bots\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1252,7 +1598,38 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_logistic_network_robot_limit{force=~\"${Force}\",location=~\"${Surface}\"},network)",
+        "definition": "query_result(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\"})",
+        "description": "NetworkType",
+        "hide": 0,
+        "includeAll": true,
+        "label": "NetworkType",
+        "multi": true,
+        "name": "NetworkType",
+        "options": [],
+        "query": {
+          "query": "query_result(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\"})",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/network_name=\"(?<text>[^\"]+)|network_type=\"(?<value>[^\"]+)/g",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus"
+        },
+        "definition": "label_values(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\",network_type=~\"${NetworkType}\"},network)",
         "description": "Network",
         "hide": 0,
         "includeAll": true,
@@ -1261,7 +1638,7 @@
         "name": "Network",
         "options": [],
         "query": {
-          "query": "label_values(factorio_logistic_network_robot_limit{force=~\"${Force}\",location=~\"${Surface}\"},network)",
+          "query": "label_values(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\",network_type=~\"${NetworkType}\"},network)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1291,7 +1668,7 @@
     ]
   },
   "timezone": "",
-  "title": "3.0.4.2 - Misc: Robots",
+  "title": "3.0.3.2 - Misc: Robots",
   "uid": "diiDwaq7k",
   "version": 1,
   "weekStart": ""

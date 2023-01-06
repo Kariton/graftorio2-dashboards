@@ -372,7 +372,7 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "single",
+              "mode": "multi",
               "sort": "none"
             }
           },
@@ -382,8 +382,8 @@
                 "type": "prometheus"
               },
               "editorMode": "code",
-              "expr": "sum by (name) (factorio_logistic_network_items{force=~\"${Force}\",name=~\"${Item}\",network=~\"${Network}\"})",
-              "legendFormat": "Stored",
+              "expr": "factorio_logistic_network_items{force=~\"${Force}\",name=~\"${Item}\",network=~\"${Network}\"}",
+              "legendFormat": "Network {{network}}",
               "range": true,
               "refId": "A"
             }
@@ -476,25 +476,25 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "nauvis"
           ],
           "value": [
-            "$__all"
+            "nauvis"
           ]
         },
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_logistic_network_items{force=~\"${Force}\"},network)",
-        "description": "Network",
+        "definition": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\"},surface)",
+        "description": "Surface",
         "hide": 0,
         "includeAll": true,
-        "label": "Network",
+        "label": "Surface",
         "multi": true,
-        "name": "Network",
+        "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values(factorio_logistic_network_items{force=~\"${Force}\"},network)",
+          "query": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -516,7 +516,69 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_item_production_input|factorio_item_production_output\"},name)",
+        "definition": "query_result(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\"})",
+        "description": "NetworkType",
+        "hide": 0,
+        "includeAll": true,
+        "label": "NetworkType",
+        "multi": true,
+        "name": "NetworkType",
+        "options": [],
+        "query": {
+          "query": "query_result(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\"})",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/network_name=\"(?<text>[^\"]+)|network_type=\"(?<value>[^\"]+)/g",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus"
+        },
+        "definition": "label_values(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\",network_type=~\"${NetworkType}\"},network)",
+        "description": "Network",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Network",
+        "multi": true,
+        "name": "Network",
+        "options": [],
+        "query": {
+          "query": "label_values(factorio_logistic_network_bots{force=~\"${Force}\",surface=~\"${Surface}\",network_type=~\"${NetworkType}\"},network)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus"
+        },
+        "definition": "query_result(factorio_item_production_input{force=~\"${Force}\"} OR factorio_item_production_output{force=~\"${Force}\"})",
         "description": "Item",
         "hide": 0,
         "includeAll": true,
@@ -525,11 +587,11 @@
         "name": "Item",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_item_production_input|factorio_item_production_output\"},name)",
+          "query": "query_result(factorio_item_production_input{force=~\"${Force}\"} OR factorio_item_production_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

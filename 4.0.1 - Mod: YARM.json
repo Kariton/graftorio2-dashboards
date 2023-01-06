@@ -58,8 +58,8 @@
   "panels": [
     {
       "datasource": {
-"type": "prometheus"
-},
+        "type": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -70,26 +70,53 @@
             "displayMode": "auto",
             "inspect": false
           },
+          "links": [
+            {
+              "title": "Mod: YARM",
+              "url": "d/skf85Hp4k?orgId=1&${__url_time_range}&${TimeScale:queryparam}&${Force:queryparam}&var-Site=${__data.fields.site}&var-Ressource=${__data.fields.name}"
+            }
+          ],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "text",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "site"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 13,
         "w": 12,
         "x": 0,
         "y": 0
@@ -109,11 +136,11 @@
       "targets": [
         {
           "datasource": {
-"type": "prometheus"
-},
+            "type": "prometheus"
+          },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_yarm_site_amount{force=~\"${Force}\",name=~\"${Site}\",type=~\"${Type}\"}",
+          "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"amount\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -130,7 +157,11 @@
               "Time": true,
               "__name__": true,
               "instance": true,
-              "job": true
+              "job": true,
+              "name": false,
+              "site": false,
+              "site_name": false,
+              "type": true
             },
             "indexByName": {},
             "renameByName": {}
@@ -141,8 +172,8 @@
     },
     {
       "datasource": {
-"type": "prometheus"
-},
+        "type": "prometheus"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -153,25 +184,52 @@
             "displayMode": "auto",
             "inspect": false
           },
+          "links": [
+            {
+              "title": "Mod: YARM",
+              "url": "d/skf85Hp4k?orgId=1&${__url_time_range}&${TimeScale:queryparam}&${Force:queryparam}&var-Site=${__data.fields.site}&var-Ressource=${__data.fields.name}"
+            }
+          ],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "text",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "site"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 11,
+        "h": 13,
         "w": 12,
         "x": 12,
         "y": 0
@@ -185,17 +243,18 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": []
       },
       "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
-"type": "prometheus"
-},
+            "type": "prometheus"
+          },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_yarm_site_ore_per_minute{force=~\"${Force}\",name=~\"${Site}\",type=~\"${Type}\"} / 60 * ${TimeScale}",
+          "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"ore_per_minute\"} / 60 * ${TimeScale}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -212,7 +271,11 @@
               "Time": true,
               "__name__": true,
               "instance": true,
-              "job": true
+              "job": true,
+              "name": false,
+              "site": false,
+              "site_name": false,
+              "type": true
             },
             "indexByName": {},
             "renameByName": {}
@@ -227,13 +290,13 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 13
       },
       "panels": [
         {
           "datasource": {
-"type": "prometheus"
-},
+            "type": "prometheus"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -270,7 +333,7 @@
             "h": 6,
             "w": 4,
             "x": 0,
-            "y": 12
+            "y": 14
           },
           "options": {
             "orientation": "auto",
@@ -288,11 +351,11 @@
           "targets": [
             {
               "datasource": {
-"type": "prometheus"
-},
+                "type": "prometheus"
+              },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "factorio_yarm_site_remaining_permille{force=~\"${Force}\",name=~\"${Site}\",type=~\"${Type}\"} / 10",
+              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"remaining_permille\"} / 10",
               "format": "time_series",
               "instant": true,
               "legendFormat": "__auto",
@@ -320,8 +383,8 @@
         },
         {
           "datasource": {
-"type": "prometheus"
-},
+            "type": "prometheus"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -358,27 +421,37 @@
                 }
               },
               "mappings": [],
+              "min": 0,
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
                     "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
                   }
                 ]
               },
               "unit": "short"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 6,
             "w": 10,
             "x": 4,
-            "y": 12
+            "y": 14
           },
           "options": {
             "legend": {
@@ -401,14 +474,14 @@
           "targets": [
             {
               "datasource": {
-"type": "prometheus"
-},
+                "type": "prometheus"
+              },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "factorio_yarm_site_amount{force=~\"${Force}\",name=~\"${Site}\",type=~\"${Type}\"}",
+              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"amount\"} / 10",
               "format": "time_series",
               "instant": false,
-              "legendFormat": "{{type}}",
+              "legendFormat": "__auto",
               "range": true,
               "refId": "A"
             }
@@ -419,8 +492,8 @@
         },
         {
           "datasource": {
-"type": "prometheus"
-},
+            "type": "prometheus"
+          },
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -464,23 +537,32 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
+                    "color": "text"
                   }
                 ]
               },
               "unit": "short"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 6,
             "w": 10,
             "x": 14,
-            "y": 12
+            "y": 14
           },
           "options": {
             "legend": {
@@ -503,14 +585,14 @@
           "targets": [
             {
               "datasource": {
-"type": "prometheus"
-},
+                "type": "prometheus"
+              },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(factorio_yarm_site_ore_per_minute{force=~\"${Force}\",name=~\"${Site}\",type=~\"${Type}\"} * -1 / 60) * ${TimeScale} ",
+              "expr": "(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"ore_per_minute\"} / 10 * -1 / 60) * ${TimeScale} ",
               "format": "time_series",
               "instant": false,
-              "legendFormat": "{{type}}",
+              "legendFormat": "__auto",
               "range": true,
               "refId": "A"
             }
@@ -531,8 +613,7 @@
   "style": "dark",
   "tags": [
     "factorio",
-    "mod",
-    "none"
+    "mod"
   ],
   "templating": {
     "list": [
@@ -572,7 +653,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "player"
           ],
@@ -581,9 +662,9 @@
           ]
         },
         "datasource": {
-"type": "prometheus"
-},
-        "definition": "label_values({__name__=~\"factorio_yarm_site_amount\"},force)",
+          "type": "prometheus"
+        },
+        "definition": "label_values({__name__=~\"factorio_yarm_resource_monitor\"},force)",
         "description": "Force",
         "hide": 0,
         "includeAll": true,
@@ -592,7 +673,7 @@
         "name": "Force",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_yarm_site_amount\"},force)",
+          "query": "label_values({__name__=~\"factorio_yarm_resource_monitor\"},force)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -603,7 +684,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -612,9 +693,9 @@
           ]
         },
         "datasource": {
-"type": "prometheus"
-},
-        "definition": "label_values(factorio_yarm_site_amount{force=~\"${Force}\"},name)",
+          "type": "prometheus"
+        },
+        "definition": "query_result(factorio_yarm_resource_monitor{force=~\"${Force}\"})",
         "description": "Site",
         "hide": 0,
         "includeAll": true,
@@ -623,18 +704,18 @@
         "name": "Site",
         "options": [],
         "query": {
-          "query": "label_values(factorio_yarm_site_amount{force=~\"${Force}\"},name)",
+          "query": "query_result(factorio_yarm_resource_monitor{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/site_name=\"(?<text>[^\"]+)|site=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -643,22 +724,22 @@
           ]
         },
         "datasource": {
-"type": "prometheus"
-},
-        "definition": "label_values(factorio_yarm_site_amount{force=~\"${Force}\",name=~\"${Site}\"},type)",
-        "description": "Type",
+          "type": "prometheus"
+        },
+        "definition": "query_result(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\"})",
+        "description": "Ressource",
         "hide": 0,
         "includeAll": true,
-        "label": "Type",
+        "label": "Ressource",
         "multi": true,
-        "name": "Type",
+        "name": "Ressource",
         "options": [],
         "query": {
-          "query": "label_values(factorio_yarm_site_amount{force=~\"${Force}\",name=~\"${Site}\"},type)",
+          "query": "query_result(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

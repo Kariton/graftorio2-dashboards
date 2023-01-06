@@ -346,7 +346,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_kill_count_input{force=~\"${Force}\"},name)",
+        "definition": "query_result(factorio_kill_count_input{force=~\"${Force}\"})",
         "description": "Kill",
         "hide": 0,
         "includeAll": true,
@@ -355,11 +355,11 @@
         "name": "Kill",
         "options": [],
         "query": {
-          "query": "label_values(factorio_kill_count_input{force=~\"${Force}\"},name)",
+          "query": "query_result(factorio_kill_count_input{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": ".*-spawner|.*-worm-.*|.*-biter.*|.*-spitter.*",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -377,7 +377,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_kill_count_output{force=~\"${Force}\"},name)",
+        "definition": "query_result(factorio_kill_count_output{force=~\"${Force}\"})",
         "description": "Loss",
         "hide": 0,
         "includeAll": true,
@@ -386,11 +386,11 @@
         "name": "Loss",
         "options": [],
         "query": {
-          "query": "label_values(factorio_kill_count_output{force=~\"${Force}\"},name)",
+          "query": "query_result(factorio_kill_count_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

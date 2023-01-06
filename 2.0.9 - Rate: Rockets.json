@@ -120,7 +120,20 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 21,
@@ -142,7 +155,7 @@
           "sortDesc": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -228,7 +241,20 @@
                 ]
               }
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 11,
@@ -334,7 +360,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_items_launched_total\"},name)",
+        "definition": "query_result({__name__=~\"factorio_items_launched_total\"})",
         "description": "Cargo",
         "hide": 0,
         "includeAll": true,
@@ -343,11 +369,11 @@
         "name": "Cargo",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_items_launched_total\"},name)",
+          "query": "query_result({__name__=~\"factorio_items_launched_total\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

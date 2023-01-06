@@ -140,7 +140,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 21,
@@ -312,7 +325,20 @@
               },
               "unit": "short"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 12,
@@ -453,7 +479,20 @@
               },
               "unit": "short"
             },
-            "overrides": []
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
           },
           "gridPos": {
             "h": 12,
@@ -611,7 +650,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_item_production_input|factorio_item_production_output\"},name)",
+        "definition": "query_result(factorio_item_production_input{force=~\"${Force}\"} OR factorio_item_production_output{force=~\"${Force}\"})",
         "description": "Item",
         "hide": 0,
         "includeAll": true,
@@ -620,11 +659,11 @@
         "name": "Item",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_item_production_input|factorio_item_production_output\"},name)",
+          "query": "query_result(factorio_item_production_input{force=~\"${Force}\"} OR factorio_item_production_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

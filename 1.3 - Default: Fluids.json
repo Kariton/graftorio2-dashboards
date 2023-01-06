@@ -100,7 +100,7 @@
             {
               "targetBlank": true,
               "title": "Default: Fluids",
-              "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+              "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
             },
             {
               "targetBlank": true,
@@ -240,6 +240,18 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
           }
         ]
       },
@@ -253,7 +265,7 @@
         {
           "targetBlank": true,
           "title": "Default: Fluids",
-          "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+          "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
         },
         {
           "targetBlank": true,
@@ -332,7 +344,7 @@
             {
               "targetBlank": true,
               "title": "Default: Fluids",
-              "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+              "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
             },
             {
               "targetBlank": true,
@@ -472,6 +484,18 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
           }
         ]
       },
@@ -485,7 +509,7 @@
         {
           "targetBlank": true,
           "title": "Default: Fluids",
-          "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+          "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
         },
         {
           "targetBlank": true,
@@ -534,7 +558,7 @@
             {
               "targetBlank": true,
               "title": "Default: Fluids",
-              "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+              "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
             },
             {
               "targetBlank": true,
@@ -554,7 +578,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -566,7 +603,7 @@
         {
           "targetBlank": true,
           "title": "Default: Fluids",
-          "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+          "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
         },
         {
           "targetBlank": true,
@@ -624,7 +661,7 @@
             {
               "targetBlank": true,
               "title": "Default: Fluids",
-              "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+              "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
             },
             {
               "targetBlank": true,
@@ -644,7 +681,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 12,
@@ -656,7 +706,7 @@
         {
           "targetBlank": true,
           "title": "Default: Fluids",
-          "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+          "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
         },
         {
           "targetBlank": true,
@@ -712,7 +762,7 @@
             {
               "targetBlank": true,
               "title": "Default: Fluids",
-              "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+              "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
             },
             {
               "targetBlank": true,
@@ -732,7 +782,20 @@
           },
           "unit": "short"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -744,7 +807,7 @@
         {
           "targetBlank": true,
           "title": "Default: Fluids",
-          "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+          "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
         },
         {
           "targetBlank": true,
@@ -802,7 +865,7 @@
             {
               "targetBlank": true,
               "title": "Default: Fluids",
-              "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+              "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
             },
             {
               "targetBlank": true,
@@ -834,7 +897,7 @@
         {
           "targetBlank": true,
           "title": "Default: Fluids",
-          "url": "/d/9wDUJ43nz?orgId=1&${__all_variables}"
+          "url": "/d/9wDUJ43nz?orgId=1&${__url_time_range}&${Force:queryparam}&${TimeScale:queryparam}&var-Fluid=${__field.labels.name}"
         },
         {
           "targetBlank": true,
@@ -964,7 +1027,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_fluid_production_input|factorio_fluid_production_output\"},name)",
+        "definition": "query_result(factorio_fluid_production_input{force=~\"${Force}\"} OR factorio_fluid_production_output{force=~\"${Force}\"})",
         "description": "Fluid",
         "hide": 0,
         "includeAll": true,
@@ -973,11 +1036,11 @@
         "name": "Fluid",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_fluid_production_input|factorio_fluid_production_output\"},name)",
+          "query": "query_result(factorio_fluid_production_input{force=~\"${Force}\"} OR factorio_fluid_production_output{force=~\"${Force}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -1004,7 +1067,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -1031,7 +1094,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"

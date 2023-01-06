@@ -112,7 +112,20 @@
           },
           "unit": "percentunit"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name} ${__field.labels.level}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 23,
@@ -134,7 +147,7 @@
           "sortDesc": true
         },
         "tooltip": {
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -150,7 +163,7 @@
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "{{name}}-{{level}}",
+          "legendFormat": "{{name}}",
           "refId": "A"
         }
       ],

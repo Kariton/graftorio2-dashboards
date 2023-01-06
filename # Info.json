@@ -125,7 +125,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 7
+            "y": 1
           },
           "options": {
             "colorMode": "value",
@@ -216,7 +216,7 @@
             "h": 5,
             "w": 21,
             "x": 3,
-            "y": 7
+            "y": 1
           },
           "options": {
             "legend": {
@@ -972,6 +972,7 @@
       "datasource": {
         "type": "prometheus"
       },
+      "description": "Estimated time of completion for the current research",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1164,7 +1165,7 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "Current research and its level",
+      "description": "Previous research and its level",
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -1192,7 +1193,20 @@
           },
           "unit": "none"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -1232,7 +1246,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_research_queue{force=~\"${Force}\",index=\"1\"}",
+          "expr": "factorio_research_queue{force=~\"${Force}\",index=\"-1\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1240,7 +1254,7 @@
           "refId": "A"
         }
       ],
-      "title": "Current Research",
+      "title": "Previous Research",
       "transformations": [
         {
           "id": "organize",
@@ -1252,16 +1266,19 @@
               "force": true,
               "index": true,
               "instance": true,
-              "job": true
+              "job": true,
+              "name": false
             },
             "indexByName": {
               "Time": 0,
-              "Value": 7,
+              "Value": 8,
               "__name__": 1,
-              "force": 3,
-              "instance": 4,
-              "job": 5,
-              "level": 6,
+              "force": 4,
+              "index": 9,
+              "instance": 5,
+              "job": 6,
+              "level": 7,
+              "localised_name": 3,
               "name": 2
             },
             "renameByName": {}
@@ -1304,7 +1321,20 @@
           },
           "unit": "none"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "name"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
@@ -1344,7 +1374,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_research_queue{force=~\"${Force}\",index!=\"1\"}",
+          "expr": "factorio_research_queue{force=~\"${Force}\",index!~\"-1|1\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1364,16 +1394,19 @@
               "force": true,
               "index": true,
               "instance": true,
-              "job": true
+              "job": true,
+              "name": false
             },
             "indexByName": {
               "Time": 0,
-              "Value": 7,
+              "Value": 8,
               "__name__": 1,
-              "force": 3,
-              "instance": 4,
-              "job": 5,
-              "level": 6,
+              "force": 4,
+              "index": 9,
+              "instance": 5,
+              "job": 6,
+              "level": 7,
+              "localised_name": 3,
               "name": 2
             },
             "renameByName": {}
@@ -1386,7 +1419,7 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "Progress of currently running research",
+      "description": "Progress of current research",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1414,7 +1447,20 @@
           },
           "unit": "percentunit"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name} ${__field.labels.level}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -1441,7 +1487,7 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "value_and_name"
       },
       "pluginVersion": "9.3.2",
       "targets": [
@@ -1455,13 +1501,13 @@
           "format": "time_series",
           "instant": false,
           "interval": "",
-          "legendFormat": "__auto",
+          "legendFormat": "{{name}}",
           "range": true,
           "refId": "A",
           "target": "randomWalk('myName')"
         }
       ],
-      "title": "Research Progress",
+      "title": "Current Research Progress",
       "transformations": [],
       "type": "stat"
     },
@@ -1621,7 +1667,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "rate(factorio_items_launched_total{name=\"satellite\"}[1h]) * ${TimeScale} or on() vector(0)",
+          "expr": "rate(factorio_items_launched_total{name=\"satellite\"}[1h]) * ${TimeScale}",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1709,10 +1755,37 @@
       },
       {
         "current": {
-          "isNone": true,
+          "selected": true,
+          "text": [
+            "nauvis"
+          ],
+          "value": [
+            "nauvis"
+          ]
+        },
+        "definition": "label_values({__name__=~\"factorio_seed\"},surface)",
+        "description": "Surface",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Surface",
+        "multi": true,
+        "name": "Surface",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"factorio_seed\"},surface)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "mining-productivity-4",
+          "value": "mining-productivity-4"
         },
         "datasource": {
           "type": "prometheus"
@@ -1730,17 +1803,16 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/,name=\"(.*)\"}/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "188",
+          "value": "188"
         },
         "datasource": {
           "type": "prometheus"

@@ -100,12 +100,12 @@
             {
               "targetBlank": true,
               "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__field.labels.name}"
             },
             {
               "targetBlank": true,
               "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__field.labels.name}"
             }
           ],
           "mappings": [],
@@ -120,7 +120,20 @@
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
@@ -137,7 +150,7 @@
         {
           "targetBlank": true,
           "title": "Rate: Electricity",
-          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
         }
       ],
       "options": {
@@ -158,7 +171,7 @@
             "type": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (name) (rate(factorio_power_production_input{force=~\"${Force}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__rate_interval]))",
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__rate_interval]))",
           "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
@@ -211,12 +224,12 @@
             {
               "targetBlank": true,
               "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__field.labels.name}"
             },
             {
               "targetBlank": true,
               "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__field.labels.name}"
             }
           ],
           "mappings": [],
@@ -231,7 +244,20 @@
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
@@ -248,7 +274,7 @@
         {
           "targetBlank": true,
           "title": "Rate: Electricity",
-          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
         }
       ],
       "options": {
@@ -269,7 +295,7 @@
             "type": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (name) (rate(factorio_power_production_output{force=~\"${Force}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__rate_interval]))",
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__rate_interval]))",
           "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
@@ -282,7 +308,7 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "Overall consumed energy by ${helper_top_consumer}",
+      "description": "Overall consumed electricity by ${helper_top_consumer}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -292,12 +318,12 @@
             {
               "targetBlank": true,
               "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__field.labels.name}"
             },
             {
               "targetBlank": true,
               "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__field.labels.name}"
             }
           ],
           "mappings": [],
@@ -312,7 +338,20 @@
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -329,7 +368,7 @@
         {
           "targetBlank": true,
           "title": "Rate: Electricity",
-          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
         }
       ],
       "options": {
@@ -356,11 +395,11 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (name) (increase(factorio_power_production_input{force=~\"${Force}\",name=\"${helper_top_consumer}\",network=~\"${Network}\"}[$__range]))",
+          "expr": "sum by (name,localised_name) (increase(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",name=\"${helper_top_consumer}\",network=~\"${Network}\"}[$__range]))",
           "format": "time_series",
           "hide": false,
           "instant": true,
-          "legendFormat": "${helper_top_consumer}",
+          "legendFormat": "{{name}}",
           "range": false,
           "refId": "A"
         }
@@ -372,7 +411,7 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "Top energy consumer",
+      "description": "Top electricity consumer",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -382,12 +421,12 @@
             {
               "targetBlank": true,
               "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__field.labels.name}"
             },
             {
               "targetBlank": true,
               "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__field.labels.name}"
             }
           ],
           "mappings": [],
@@ -402,7 +441,20 @@
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 12,
@@ -419,7 +471,7 @@
         {
           "targetBlank": true,
           "title": "Rate: Electricity",
-          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
         }
       ],
       "options": {
@@ -444,7 +496,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "topk(8,sum by (name) (rate(factorio_power_production_input{force=~\"${Force}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__range])))",
+          "expr": "topk(8,sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -460,7 +512,7 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "Overall produced energy by ${helper_top_producer}",
+      "description": "Overall produced electricity by ${helper_top_producer}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -470,12 +522,12 @@
             {
               "targetBlank": true,
               "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__field.labels.name}"
             },
             {
               "targetBlank": true,
               "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__field.labels.name}"
             }
           ],
           "mappings": [],
@@ -490,7 +542,20 @@
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 2,
@@ -507,7 +572,7 @@
         {
           "targetBlank": true,
           "title": "Rate: Electricity",
-          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
         }
       ],
       "options": {
@@ -534,11 +599,11 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (name) (increase(factorio_power_production_output{force=~\"${Force}\",name=\"${helper_top_producer}\",network=~\"${Network}\"}[$__range]))",
+          "expr": "sum by (name,localised_name) (increase(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",name=\"${helper_top_producer}\",network=~\"${Network}\"}[$__range]))",
           "format": "time_series",
           "hide": false,
           "instant": true,
-          "legendFormat": "${helper_top_producer}",
+          "legendFormat": "{{name}}",
           "range": false,
           "refId": "A"
         }
@@ -550,7 +615,7 @@
       "datasource": {
         "type": "prometheus"
       },
-      "description": "Top energy producer",
+      "description": "Top electricity producer",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -560,12 +625,12 @@
             {
               "targetBlank": true,
               "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__field.labels.name}"
             },
             {
               "targetBlank": true,
               "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__field.labels.name}"
             }
           ],
           "mappings": [],
@@ -580,7 +645,20 @@
           },
           "unit": "watt"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 12,
@@ -597,7 +675,7 @@
         {
           "targetBlank": true,
           "title": "Rate: Electricity",
-          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+          "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Surface:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
         }
       ],
       "options": {
@@ -622,7 +700,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "topk(8,sum by (name) (rate(factorio_power_production_output{name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__range])))",
+          "expr": "topk(8,sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",name=~\"${Consumer}|${Producer}\",network=~\"${Network}\"}[$__range])))",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -646,7 +724,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "player"
           ],
@@ -677,6 +755,37 @@
       },
       {
         "current": {
+          "selected": false,
+          "text": [
+            "nauvis"
+          ],
+          "value": [
+            "nauvis"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus"
+        },
+        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},surface)",
+        "description": "Surface",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Surface",
+        "multi": true,
+        "name": "Surface",
+        "options": [],
+        "query": {
+          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},surface)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
           "selected": true,
           "text": [
             "All"
@@ -688,7 +797,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},network)",
+        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\",force=~\"${Force}\",surface=~\"${Surface}\"},network)\n",
         "description": "Network",
         "hide": 0,
         "includeAll": true,
@@ -697,13 +806,13 @@
         "name": "Network",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},network)",
+          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\",force=~\"${Force}\",surface=~\"${Surface}\"},network)\n",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 3,
         "type": "query"
       },
       {
@@ -719,7 +828,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_power_production_input{force=~\"${Force}\",network=~\"^${Network}\"}, name)",
+        "definition": "query_result(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
         "description": "Consumer",
         "hide": 0,
         "includeAll": true,
@@ -728,11 +837,11 @@
         "name": "Consumer",
         "options": [],
         "query": {
-          "query": "label_values(factorio_power_production_input{force=~\"${Force}\",network=~\"^${Network}\"}, name)",
+          "query": "query_result(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -750,7 +859,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values(factorio_power_production_output{force=~\"${Force}\",network=~\"^${Network}\"},name)",
+        "definition": "query_result(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
         "description": "Producer",
         "hide": 0,
         "includeAll": true,
@@ -759,11 +868,11 @@
         "name": "Producer",
         "options": [],
         "query": {
-          "query": "label_values(factorio_power_production_output{force=~\"${Force}\",network=~\"^${Network}\"},name)",
+          "query": "query_result(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\"})",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -777,7 +886,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "query_result(topk(6,sum by (name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"^${Network}\",name=~\"^${Consumer}\"}[$__range]))))",
+        "definition": "query_result(topk(6,sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\",name=~\"^${Consumer}\"}[$__range]))))",
         "description": "helper_top_consumer",
         "hide": 2,
         "includeAll": true,
@@ -786,11 +895,11 @@
         "name": "helper_top_consumer",
         "options": [],
         "query": {
-          "query": "query_result(topk(6,sum by (name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"^${Network}\",name=~\"^${Consumer}\"}[$__range]))))",
+          "query": "query_result(topk(6,sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\",name=~\"^${Consumer}\"}[$__range]))))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
@@ -804,7 +913,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "query_result(topk(6,sum by (name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"^${Network}\",name=~\"^${Producer}\"}[$__range]))))",
+        "definition": "query_result(topk(6,sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\",name=~\"^${Producer}\"}[$__range]))))",
         "description": "helper_top_producer",
         "hide": 2,
         "includeAll": true,
@@ -813,11 +922,11 @@
         "name": "helper_top_producer",
         "options": [],
         "query": {
-          "query": "query_result(topk(6,sum by (name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"^${Network}\",name=~\"^${Producer}\"}[$__range]))))",
+          "query": "query_result(topk(6,sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"^${Network}\",name=~\"^${Producer}\"}[$__range]))))",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "/name=\"(.*)\"/",
+        "regex": "/localised_name=\"(?<text>[^\"]+)|name=\"(?<value>[^\"]+)/g",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
