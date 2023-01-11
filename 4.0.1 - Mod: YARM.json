@@ -73,7 +73,7 @@
           "links": [
             {
               "title": "Mod: YARM",
-              "url": "d/skf85Hp4k?orgId=1&${__url_time_range}&${TimeScale:queryparam}&${Force:queryparam}&var-Site=${__data.fields.site}&var-Ressource=${__data.fields.name}"
+              "url": "d/skf85Hp4k?orgId=1&${__url_time_range}&${TimeScale:queryparam}&${Force:queryparam}&var-Site=${__data.fields.site}&var-Resource=${__data.fields.name}"
             }
           ],
           "mappings": [],
@@ -112,12 +112,128 @@
                 "value": true
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Force"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Site"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Resource"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Amount"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "gradient-gauge"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Ore Per ${TimeScale}"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ETD"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "text",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 30
+                    },
+                    {
+                      "color": "orange",
+                      "value": 60
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 90
+                    },
+                    {
+                      "color": "green",
+                      "value": 120
+                    },
+                    {
+                      "color": "blue",
+                      "value": 1440
+                    },
+                    {
+                      "color": "transparent",
+                      "value": 1441
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "m"
+              },
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
           }
         ]
       },
       "gridPos": {
         "h": 13,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -130,122 +246,14 @@
           ],
           "show": false
         },
-        "showHeader": true
-      },
-      "pluginVersion": "9.3.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"amount\"}",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Ore Amount",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "__name__": true,
-              "instance": true,
-              "job": true,
-              "name": false,
-              "site": false,
-              "site_name": false,
-              "type": true
-            },
-            "indexByName": {},
-            "renameByName": {}
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "displayMode": "auto",
-            "inspect": false
-          },
-          "links": [
-            {
-              "title": "Mod: YARM",
-              "url": "d/skf85Hp4k?orgId=1&${__url_time_range}&${TimeScale:queryparam}&${Force:queryparam}&var-Site=${__data.fields.site}&var-Ressource=${__data.fields.name}"
-            }
-          ],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": [
+        "showHeader": true,
+        "sortBy": [
           {
-            "matcher": {
-              "id": "byName",
-              "options": "name"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "site"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
+            "desc": false,
+            "displayName": "ETD"
           }
         ]
       },
-      "gridPos": {
-        "h": 13,
-        "w": 12,
-        "x": 12,
-        "y": 0
-      },
-      "options": {
-        "footer": {
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
       "pluginVersion": "9.3.2",
       "targets": [
         {
@@ -254,31 +262,120 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"ore_per_minute\"} / 60 * ${TimeScale}",
+          "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Resource}\",type=\"amount\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Resource}\",type=\"ore_per_minute\"} * -1 / 60) * ${TimeScale}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "  (\r\n      factorio_yarm_resource_monitor{force=~\"${Force}\",name=~\"${Resource}\",site=~\"${Site}\",type=\"etd_minutes\"}\r\n    !=\r\n      -1\r\n  )\r\nor\r\n    52600001\r\n  +\r\n    (\r\n        factorio_yarm_resource_monitor{force=~\"${Force}\",name=~\"${Resource}\",site=~\"${Site}\",type=\"etd_minutes\"}\r\n    )",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "C"
         }
       ],
-      "title": "Ore Mined Per ${TimeScale}",
+      "title": "YARM",
       "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "site_name",
+            "mode": "outer"
+          }
+        },
         {
           "id": "organize",
           "options": {
             "excludeByName": {
-              "Time": true,
+              "Time 1": true,
+              "Time 2": true,
+              "Time 3": true,
               "__name__": true,
-              "instance": true,
-              "job": true,
-              "name": false,
-              "site": false,
-              "site_name": false,
-              "type": true
+              "force 1": false,
+              "force 2": true,
+              "force 3": true,
+              "instance 1": true,
+              "instance 2": true,
+              "instance 3": true,
+              "job 1": true,
+              "job 2": true,
+              "job 3": true,
+              "localised_name 1": false,
+              "localised_name 2": true,
+              "localised_name 3": true,
+              "name 1": false,
+              "name 2": true,
+              "name 3": true,
+              "site 1": false,
+              "site 2": true,
+              "site 3": true,
+              "type 1": true,
+              "type 2": true,
+              "type 3": true
             },
-            "indexByName": {},
-            "renameByName": {}
+            "indexByName": {
+              "Time 1": 2,
+              "Time 2": 11,
+              "Time 3": 20,
+              "Value #A": 10,
+              "Value #B": 19,
+              "Value #C": 28,
+              "__name__": 3,
+              "force 1": 0,
+              "force 2": 12,
+              "force 3": 21,
+              "instance 1": 4,
+              "instance 2": 13,
+              "instance 3": 22,
+              "job 1": 5,
+              "job 2": 14,
+              "job 3": 23,
+              "localised_name 1": 6,
+              "localised_name 2": 15,
+              "localised_name 3": 24,
+              "name 1": 7,
+              "name 2": 16,
+              "name 3": 25,
+              "site 1": 8,
+              "site 2": 17,
+              "site 3": 26,
+              "site_name": 1,
+              "type 1": 9,
+              "type 2": 18,
+              "type 3": 27
+            },
+            "renameByName": {
+              "Value #A": "Amount",
+              "Value #B": "Ore Per ${TimeScale}",
+              "Value #C": "ETD",
+              "force 1": "Force",
+              "localised_name 1": "Resource",
+              "site_name": "Site"
+            }
           }
         }
       ],
@@ -309,7 +406,8 @@
                 "mode": "percentage",
                 "steps": [
                   {
-                    "color": "red"
+                    "color": "red",
+                    "value": null
                   },
                   {
                     "color": "orange",
@@ -355,7 +453,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"remaining_permille\"} / 10",
+              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Resource}\",type=\"remaining_permille\"} / 10",
               "format": "time_series",
               "instant": true,
               "legendFormat": "__auto",
@@ -393,7 +491,7 @@
               "custom": {
                 "axisCenteredZero": false,
                 "axisColorMode": "text",
-                "axisLabel": "Amount",
+                "axisLabel": "Minute",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
                 "drawStyle": "line",
@@ -420,17 +518,27 @@
                   "mode": "off"
                 }
               },
-              "mappings": [],
-              "min": 0,
+              "mappings": [
+                {
+                  "options": {
+                    "-1": {
+                      "index": 0,
+                      "text": "∞"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
               "thresholds": {
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
-              "unit": "short"
+              "unit": "m"
             },
             "overrides": [
               {
@@ -449,15 +557,13 @@
           },
           "gridPos": {
             "h": 6,
-            "w": 10,
+            "w": 4,
             "x": 4,
             "y": 14
           },
           "options": {
             "legend": {
               "calcs": [
-                "min",
-                "max",
                 "mean",
                 "lastNotNull"
               ],
@@ -470,24 +576,19 @@
               "sort": "none"
             }
           },
-          "pluginVersion": "9.3.2",
           "targets": [
             {
               "datasource": {
                 "type": "prometheus"
               },
               "editorMode": "code",
-              "exemplar": false,
-              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"amount\"} / 10",
-              "format": "time_series",
-              "instant": false,
+              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Resource}\",type=\"etd_minutes\"}",
               "legendFormat": "__auto",
               "range": true,
               "refId": "A"
             }
           ],
-          "title": "Ore Patch Size",
-          "transformations": [],
+          "title": "ETD",
           "type": "timeseries"
         },
         {
@@ -537,7 +638,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text"
+                    "color": "text",
+                    "value": null
                   }
                 ]
               },
@@ -560,8 +662,8 @@
           },
           "gridPos": {
             "h": 6,
-            "w": 10,
-            "x": 14,
+            "w": 8,
+            "x": 8,
             "y": 14
           },
           "options": {
@@ -589,7 +691,7 @@
               },
               "editorMode": "code",
               "exemplar": false,
-              "expr": "(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Ressource}\",type=\"ore_per_minute\"} / 10 * -1 / 60) * ${TimeScale} ",
+              "expr": "(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Resource}\",type=\"ore_per_minute\"} * -1 / 60) * ${TimeScale}",
               "format": "time_series",
               "instant": false,
               "legendFormat": "__auto",
@@ -598,6 +700,116 @@
             }
           ],
           "title": "Ore Mined Per ${TimeScale}",
+          "transformations": [],
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "Amount",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "${__field.labels.localised_name}"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 8,
+            "x": 16,
+            "y": 14
+          },
+          "options": {
+            "legend": {
+              "calcs": [
+                "min",
+                "max",
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "9.3.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\",name=~\"${Resource}\",type=\"amount\"} / 10",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "Ore Patch Size",
           "transformations": [],
           "type": "timeseries"
         }
@@ -619,7 +831,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "Minute",
           "value": "60"
         },
@@ -641,19 +853,19 @@
             "value": "60"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "Hour",
-            "value": "60"
+            "value": "3600"
           }
         ],
-        "query": "Second : 1, Minute : 60, Hour : 60",
+        "query": "Second : 1, Minute : 60, Hour : 3600",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "player"
           ],
@@ -684,7 +896,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -715,7 +927,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -727,12 +939,12 @@
           "type": "prometheus"
         },
         "definition": "query_result(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\"})",
-        "description": "Ressource",
+        "description": "Resource",
         "hide": 0,
         "includeAll": true,
-        "label": "Ressource",
+        "label": "Resource",
         "multi": true,
-        "name": "Ressource",
+        "name": "Resource",
         "options": [],
         "query": {
           "query": "query_result(factorio_yarm_resource_monitor{force=~\"${Force}\",site=~\"${Site}\"})",

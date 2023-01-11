@@ -682,7 +682,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_seed",
+          "expr": "factorio_surface{surface=~\"${Surface}\",type=\"seed\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1589,7 +1589,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "factorio_items_launched_total{name=\"satellite\"} or on() vector(0)",
+          "expr": "factorio_items_launched_total{name=\"satellite\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -1763,7 +1763,10 @@
             "nauvis"
           ]
         },
-        "definition": "label_values({__name__=~\"factorio_seed\"},surface)",
+        "datasource": {
+          "type": "prometheus"
+        },
+        "definition": "label_values({__name__=~\"factorio_surface\"},surface)",
         "description": "Surface",
         "hide": 0,
         "includeAll": true,
@@ -1772,7 +1775,7 @@
         "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_seed\"},surface)",
+          "query": "label_values({__name__=~\"factorio_surface\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -1784,8 +1787,8 @@
       {
         "current": {
           "selected": false,
-          "text": "mining-productivity-4",
-          "value": "mining-productivity-4"
+          "text": "artillery",
+          "value": "artillery"
         },
         "datasource": {
           "type": "prometheus"
@@ -1811,8 +1814,8 @@
       {
         "current": {
           "selected": false,
-          "text": "188",
-          "value": "188"
+          "text": "1",
+          "value": "1"
         },
         "datasource": {
           "type": "prometheus"

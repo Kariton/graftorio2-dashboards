@@ -142,12 +142,12 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "location"
+              "options": "surface"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 100
+                "value": 200
               },
               {
                 "id": "custom.displayMode",
@@ -249,7 +249,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "topk(25, factorio_logistic_network_items{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Item}\"})",
+          "expr": "topk(25, factorio_logistic_network_items{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Item}\",point_type=\"contents\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -272,10 +272,15 @@
               "localised_name": false,
               "location": false,
               "point_type": true,
-              "surface": true
+              "surface": false
             },
             "indexByName": {},
-            "renameByName": {}
+            "renameByName": {
+              "Value": "Amount",
+              "localised_name": "Item",
+              "network": "Network",
+              "surface": "Surface"
+            }
           }
         }
       ],
@@ -474,8 +479,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -572,8 +576,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -693,7 +696,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\"},surface)",
+        "definition": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\",force=~\"${Force}\"},surface)",
         "description": "Surface",
         "hide": 0,
         "includeAll": true,
@@ -702,7 +705,7 @@
         "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\"},surface)",
+          "query": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\",force=~\"${Force}\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,

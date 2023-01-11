@@ -167,7 +167,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 2,
+        "w": 24,
         "x": 0,
         "y": 1
       },
@@ -248,7 +248,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 4
       },
       "panels": [
         {
@@ -277,8 +277,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -362,7 +361,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 5
       },
       "panels": [
         {
@@ -394,8 +393,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red",
-                    "value": null
+                    "color": "red"
                   },
                   {
                     "color": "#EAB839",
@@ -505,7 +503,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 6
       },
       "panels": [
         {
@@ -534,8 +532,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -619,7 +616,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 7
       },
       "panels": [
         {
@@ -651,8 +648,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "red",
-                    "value": null
+                    "color": "red"
                   },
                   {
                     "color": "#EAB839",
@@ -765,7 +761,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 8
       },
       "panels": [
         {
@@ -794,8 +790,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -880,7 +875,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 9
       },
       "panels": [
         {
@@ -909,8 +904,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#ffffff",
-                    "value": null
+                    "color": "#ffffff"
                   }
                 ]
               },
@@ -1090,7 +1084,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_logistic_network_bots\"},surface)",
+        "definition": "label_values({__name__=~\"factorio_logistic_network_bots\",force=~\"${Force}\"},surface)",
         "description": "Surface",
         "hide": 0,
         "includeAll": true,
@@ -1099,7 +1093,7 @@
         "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_logistic_network_bots\"},surface)",
+          "query": "label_values({__name__=~\"factorio_logistic_network_bots\",force=~\"${Force}\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,

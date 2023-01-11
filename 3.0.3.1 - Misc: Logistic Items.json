@@ -144,7 +144,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 2,
+        "w": 24,
         "x": 0,
         "y": 1
       },
@@ -228,7 +228,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 4
       },
       "panels": [
         {
@@ -283,8 +283,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "text",
-                    "value": null
+                    "color": "text"
                   }
                 ]
               },
@@ -444,7 +443,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\"},surface)",
+        "definition": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\",force=~\"${Force}\"},surface)",
         "description": "Surface",
         "hide": 0,
         "includeAll": true,
@@ -453,7 +452,7 @@
         "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\"},surface)",
+          "query": "label_values({__name__=~\"factorio_logistic_network_bots|factorio_logistic_network_items\",force=~\"${Force}\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,

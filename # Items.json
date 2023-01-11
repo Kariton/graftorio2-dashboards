@@ -31,6 +31,20 @@
     {
       "asDropdown": true,
       "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "default"
+      ],
+      "targetBlank": false,
+      "title": "Defaults",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
       "keepTime": true,
       "tags": [
         "rate"
@@ -38,6 +52,34 @@
       "targetBlank": false,
       "title": "Rates",
       "type": "dashboards"
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "misc"
+      ],
+      "targetBlank": false,
+      "title": "Miscs",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "mod"
+      ],
+      "targetBlank": false,
+      "title": "Mods",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": true,
@@ -2799,8 +2841,8 @@
       {
         "current": {
           "selected": false,
-          "text": "mining-productivity-4",
-          "value": "mining-productivity-4"
+          "text": "artillery",
+          "value": "artillery"
         },
         "datasource": {
           "type": "prometheus"
@@ -2826,8 +2868,8 @@
       {
         "current": {
           "selected": false,
-          "text": "180",
-          "value": "180"
+          "text": "1",
+          "value": "1"
         },
         "datasource": {
           "type": "prometheus"

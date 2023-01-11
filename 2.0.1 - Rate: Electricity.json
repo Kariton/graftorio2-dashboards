@@ -160,7 +160,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__rate_interval]))",
+          "expr": "sum(rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__rate_interval]))",
           "interval": "",
           "legendFormat": "Production",
           "range": true,
@@ -172,7 +172,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__rate_interval]))",
+          "expr": "sum(rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__rate_interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Consumption",
@@ -300,7 +300,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
           "interval": "",
           "legendFormat": "{{name}}",
           "range": true,
@@ -409,7 +409,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Consumer}|${Producer}\"}[$__range]))",
           "interval": "",
           "legendFormat": "{{name}}",
           "range": true,
@@ -421,287 +421,285 @@
       "type": "piechart"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 21
       },
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "description": "Electricity production",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "Watt",
-                "axisPlacement": "auto",
-                "axisWidth": 50,
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 2,
-                "gradientMode": "hue",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "log": 2,
-                  "type": "log"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "links": [
-                {
-                  "targetBlank": false,
-                  "title": "Default: Electricity",
-                  "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
-                },
-                {
-                  "targetBlank": false,
-                  "title": "Rate: Electricity",
-                  "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
-                }
-              ],
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "text",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "watt"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Value"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "${__field.labels.localised_name}"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 12,
-            "w": 24,
-            "x": 0,
-            "y": 22
-          },
-          "links": [
-            {
-              "targetBlank": false,
-              "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
-            },
-            {
-              "targetBlank": false,
-              "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__all_variables}"
-            }
-          ],
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean",
-                "last"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true,
-              "sortBy": "Mean",
-              "sortDesc": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Producer}\"}[$__rate_interval]))",
-              "interval": "",
-              "legendFormat": "{{name}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Electricity Production",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "description": "Electricity consumption",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "Watt",
-                "axisPlacement": "auto",
-                "axisWidth": 50,
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 2,
-                "gradientMode": "opacity",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "log": 2,
-                  "type": "log"
-                },
-                "showPoints": "auto",
-                "spanNulls": false,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "links": [
-                {
-                  "targetBlank": false,
-                  "title": "Default: Electricity",
-                  "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
-                },
-                {
-                  "targetBlank": false,
-                  "title": "Rate: Electricity",
-                  "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
-                }
-              ],
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "text",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "watt"
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Value"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "${__field.labels.localised_name}"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 12,
-            "w": 24,
-            "x": 0,
-            "y": 34
-          },
-          "links": [
-            {
-              "targetBlank": false,
-              "title": "Default: Electricity",
-              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
-            },
-            {
-              "targetBlank": false,
-              "title": "Rate: Electricity",
-              "url": "/d/lyiFkmynz?orgId=1&${__all_variables}"
-            }
-          ],
-          "options": {
-            "legend": {
-              "calcs": [
-                "min",
-                "max",
-                "mean",
-                "last"
-              ],
-              "displayMode": "table",
-              "placement": "right",
-              "showLegend": true,
-              "sortBy": "Mean",
-              "sortDesc": true
-            },
-            "tooltip": {
-              "mode": "multi",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",network=~\"${Network}\",name=~\"${Consumer}\"}[$__rate_interval]))",
-              "interval": "",
-              "legendFormat": "{{name}}",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Electricity Consumption",
-          "type": "timeseries"
-        }
-      ],
+      "panels": [],
       "title": "differentiated",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "description": "Electricity production",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Watt",
+            "axisPlacement": "auto",
+            "axisWidth": 50,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 2,
+            "gradientMode": "hue",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Default: Electricity",
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+            },
+            {
+              "targetBlank": false,
+              "title": "Rate: Electricity",
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&var-Producer=${__series.name}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "links": [
+        {
+          "targetBlank": false,
+          "title": "Default: Electricity",
+          "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+        },
+        {
+          "targetBlank": false,
+          "title": "Rate: Electricity",
+          "url": "/d/lyiFkmynz?orgId=1&${__all_variables}"
+        }
+      ],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_output{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Producer}\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Electricity Production",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
+      "description": "Electricity consumption",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "Watt",
+            "axisPlacement": "auto",
+            "axisWidth": 50,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 2,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "Default: Electricity",
+              "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+            },
+            {
+              "targetBlank": false,
+              "title": "Rate: Electricity",
+              "url": "/d/lyiFkmynz?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Producer:queryparam}&var-Consumer=${__series.name}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text"
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.localised_name}"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "links": [
+        {
+          "targetBlank": false,
+          "title": "Default: Electricity",
+          "url": "/d/Wapwo437k?orgId=1&${__url_time_range}&${Force:queryparam}&${Network:queryparam}&${Consumer:queryparam}&${Producer:queryparam}"
+        },
+        {
+          "targetBlank": false,
+          "title": "Rate: Electricity",
+          "url": "/d/lyiFkmynz?orgId=1&${__all_variables}"
+        }
+      ],
+      "options": {
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Mean",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (name,localised_name) (rate(factorio_power_production_input{force=~\"${Force}\",surface=~\"${Surface}\",network=~\"${Network}\",name=~\"${Consumer}\"}[$__rate_interval]))",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Electricity Consumption",
+      "type": "timeseries"
     }
   ],
   "refresh": "30s",
@@ -757,7 +755,7 @@
         "datasource": {
           "type": "prometheus"
         },
-        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},surface)",
+        "definition": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\",force=~\"${Force}\"},surface)",
         "description": "Surface",
         "hide": 0,
         "includeAll": true,
@@ -766,7 +764,7 @@
         "name": "Surface",
         "options": [],
         "query": {
-          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\"},surface)",
+          "query": "label_values({__name__=~\"factorio_power_production_input|factorio_power_production_output\",force=~\"${Force}\"},surface)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
