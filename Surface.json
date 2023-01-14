@@ -550,7 +550,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
+        "w": 5,
         "x": 0,
         "y": 5
       },
@@ -607,6 +607,81 @@
       "datasource": {
         "type": "prometheus"
       },
+      "description": "Solar power multiplier",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 5,
+        "y": 5
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "factorio_surface{surface=\"${Surface}\",type=\"solar_power_multiplier\"}",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "__auto",
+          "refId": "A"
+        }
+      ],
+      "title": "Solar Power Multiplier",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "surface": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus"
+      },
       "description": "Wind speed",
       "fieldConfig": {
         "defaults": {
@@ -625,8 +700,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 6,
+        "w": 5,
+        "x": 10,
         "y": 5
       },
       "options": {
@@ -700,8 +775,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 12,
+        "w": 5,
+        "x": 15,
         "y": 5
       },
       "options": {
@@ -993,8 +1068,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 18,
+        "w": 4,
+        "x": 20,
         "y": 5
       },
       "options": {
@@ -1707,6 +1782,50 @@
                 "value": "Daytime"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "darkness"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              },
+              {
+                "id": "custom.stacking",
+                "value": {
+                  "group": "A",
+                  "mode": "percent"
+                }
+              },
+              {
+                "id": "custom.axisLabel",
+                "value": "Darkness"
+              },
+              {
+                "id": "displayName",
+                "value": "Darkness"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1795,6 +1914,17 @@
           "legendFormat": "midnight",
           "range": true,
           "refId": "F"
+        },
+        {
+          "datasource": {
+            "type": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "factorio_surface{surface=\"${Surface}\",type=\"darkness\"}",
+          "hide": false,
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "G"
         }
       ],
       "title": "Day Cycle",

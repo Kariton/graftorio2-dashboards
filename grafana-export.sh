@@ -18,12 +18,12 @@ for dash in $(curl -H "${headers}" -s "${FULLURL}/api/search?query=&" | jq -r '.
         title=$(jq -r .dashboard.title ${dash_path})
         folder="$(jq -r '.meta.folderTitle' ${dash_path})"
         mkdir -p "${folder}"
-        mv -f ${in_path}/dashboard.json "${folder}/${title}.json"
-        sed -i '/"id": [0-9]\+,/d' "${folder}/${title}.json"
-        sed -i 's/"version": [0-9]\+,/"version": 1,/g' "${folder}/${title}.json"
-        sed -i -z 's@"datasource": {\n\s\+"type": "prometheus",\n\s\+"uid": "\w\+"\n\s\+},\n@"datasource": {\n"type": "prometheus"\n},\n@g' "${folder}/${title}.json"
-        jq . "${folder}/${title}.json" > "${folder}/${title}.json"
-        echo "exported ${folder}/${title}.json"
+        sed -i '/"id": [0-9]\+,/d' "${in_path}/dashboard.json"
+        sed -i 's/"version": [0-9]\+,/"version": 1,/g' "${in_path}/dashboard.json"
+        sed -i -z 's@"datasource": {\n\s\+"type": "prometheus",\n\s\+"uid": "\w\+"\n\s\+},\n@"datasource": {\n"type": "prometheus"\n},\n@g' "${in_path}/dashboard.json"
+        file_title="${title//[^[:alnum:]]/}"
+        jq . "${in_path}/dashboard.json" > "${folder}/${file_title}.json"
+        printf "exported '${folder}/${title}' to '${folder}/${file_title}.json'\n"
 
 done
 rm -r ${in_path}
